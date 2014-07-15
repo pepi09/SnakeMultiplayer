@@ -3,31 +3,36 @@ var ctx = c.getContext("2d");
 var canvasWidth = $("#canvas").width();
 var canvasHeight = $("#canvas").height();
 
-function Tile(x, y, size, ctx) {
+function Tile(x, y, size, ctx, color) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.ctx = ctx;
+    this.color = color || 'red';
 
     this.print = function() {
-        ctx.fillStyle = "red";
+        ctx.fillStyle = this.color;
         ctx.fillRect(this.x * this.size, this.y * this.size, this.size, this.size);
     }
 }
 
 var food = (function() {
+    //this.point = new Tile(0, 0, 0, ctx);
+    point = null;
+
     this.place = function() {
-        var x = Math.floor(Math.random() * canvasWidth + 1);
-        var y = Math.floor(Math.random() * canvasHeight + 1);
-        this.point = new Tile(100, 273, 10, ctx);
+        var x = Math.floor(Math.random() * canvasWidth / 10 + 1);
+        var y = Math.floor(Math.random() * canvasHeight / 10 + 1);
+        this.position = new Tile(x, y, 10, ctx, 'green');
     }
     this.print = function() {
-        this.point.print();
+        this.position.print();
     }
 
     return {
         place: place,
         print: print,
+        position: point
     }
 }(ctx))
 
@@ -46,6 +51,13 @@ var snake = (function() {
             point.print();
         })
     }
+
+    this.tryEat = function() {
+        if (head.x === window.food.position.x && head.y === window.food.position.y) {
+            tail.push(food.position);
+            food.place();
+        }
+    };
 
     this.move = function(dir) {
         var newX = head.x,
@@ -77,6 +89,7 @@ var snake = (function() {
     return {
         print: print,
         move: move,
+        tryEat: tryEat
     }
 }(ctx))
 
@@ -89,8 +102,6 @@ setInterval(function() {
     $(document).keydown(function(event) {
         if (event.keyCode === 39 && direction != "left") {
             direction = "right";
-            food.place();
-            food.print();
         }
 
         if (event.keyCode === 37 && direction != "right") {
@@ -108,7 +119,9 @@ setInterval(function() {
 
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     snake.move(direction);
+    snake.tryEat();
     snake.print();
+
     food.print();
 
 
