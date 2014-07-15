@@ -54,18 +54,26 @@
         }
 
         this.move = function(dir){
+            var newX = head.x, newY = head.y;
             if (dir === "right"){
-                var new_head = new Tile(head.x + 1, head.y, 10, ctx);
+                newX++;
             }
             if (dir === "left"){
-                var new_head = new Tile(head.x - 1, head.y, 10, ctx);
+                newX--;
             }
             if (dir === "up"){
-                var new_head = new Tile(head.x, head.y - 1, 10, ctx);
+                newY--;
             }
             if (dir === "down"){
-                var new_head = new Tile(head.x, head.y + 1, 10, ctx);
+                newY++;
             }
+
+            // this allows the snake to appear on the other side of the cavnas
+            // when it hits border
+            newX = (newX + canvasWidth) % (canvasWidth / 10);
+            newY = (newY + canvasHeight) % (canvasHeight / 10);
+
+            var new_head = new Tile(newX, newY, 10, ctx);
             tail.push(new_head);
             tail.shift();
             head = new_head;
