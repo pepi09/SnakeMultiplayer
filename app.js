@@ -21,9 +21,9 @@ var food = (function() {
     point = null;
 
     this.place = function() {
-        var x = Math.floor(Math.random() * canvasWidth / 10 + 1);
-        var y = Math.floor(Math.random() * canvasHeight / 10 + 1);
-        this.position = new Tile(x, y, 10, ctx, 'green');
+        var x = Math.floor(Math.random() * canvasWidth / 10);
+        var y = Math.floor(Math.random() * canvasHeight / 10);
+        this.position = new Tile(x, y, 10, ctx, 'orange');
     }
     this.print = function() {
         this.position.print();
