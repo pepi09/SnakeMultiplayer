@@ -1,0 +1,20 @@
+{
+  "name": "SnakeMultiplayer",
+  "version": "0.0.0",
+  "homepage": "https://github.com/pepi09/SnakeMultiplayer",
+  "authors": [
+    "Viktor Staikov <viktor.staikov@gmail.com>"
+  ],
+  "main": "canvas.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}
