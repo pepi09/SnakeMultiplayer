@@ -6,7 +6,7 @@
 <button id="joinGame">Join Game</button>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/socket.io-client/socket.io.js"></script>
-
+</br>
 <script>
     $(function() {
         console.log("I AM READY");
@@ -64,6 +64,11 @@
                     console.log(result);
                 });
             });
+
         }
     });
 </script>
+
+<canvas id="canvas" width="400" height="400" style="border : 1px solid;"></canvas>
+
+<script src="../client/app.js"></script>
