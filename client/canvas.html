@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html>
-<canvas id="canvas" width="400" height="400" style="border : 1px solid;"></canvas>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 
-<script src="app.js"></script>
+<input type="text" id="playerName" value="RadoRado">
+<button id="createGame">Create Game</button>
+
+<br>
+<input type="text" id="joinGameId">
+<button id="joinGame">Join Game</button>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/socket.io-client/socket.io.js"></script>
+</br>
+
+<br>
+<span id="game_place">
+    <canvas id='canvas' width='400' height='400' style='border : 1px solid;'></canvas>
+</span>
+
+
+<script src="../client/app.js"></script>
+<script src="../client/snake_and_food.js"></script>
+<script src="../client/game.js"></script>
 
 </html>
